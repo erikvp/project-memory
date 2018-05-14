@@ -13,17 +13,38 @@ body {
   color: #424242;
 }
 
-.container {
+ul {
   display: flex;
   flex-wrap: wrap;
+  list-style: none;
+}
+
+li {
+  border: 2px solid blue;
+  width: 20%;
+  height: 50%;
+  font-size: 4em;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   border: 2px solid chartreuse;
   width: 100%;
+  padding: 20px;
 }
 
 .header {
   border: 2px solid hotpink;
   width: 100%;
   margin: 20px;
+}
+
+.game-stats {
+  border: 2px solid gold;
+  width: 100%;
 }
 
 .main {
@@ -36,4 +57,9 @@ body {
   border: 2px solid forestgreen;
   width: 100%;
   margin: 20px;
+}
+
+#square1 {
+  opacity: 0.5;
+  width: 20%;
 }
