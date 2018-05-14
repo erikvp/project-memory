@@ -17,13 +17,15 @@ ul {
   display: flex;
   flex-wrap: wrap;
   list-style: none;
+  padding: 0;
 }
 
 li {
   border: 2px solid blue;
   width: 20%;
-  height: 50%;
+  /* height: 25%; */
   font-size: 4em;
+  margin: 10px;
 }
 
 .container {
@@ -57,9 +59,4 @@ li {
   border: 2px solid forestgreen;
   width: 100%;
   margin: 20px;
-}
-
-#square1 {
-  opacity: 0.5;
-  width: 20%;
 }
