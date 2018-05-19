@@ -27,7 +27,7 @@ ul {
 }
 
 li {
-  border: 2px solid blue;
+  border: 5px solid white;
   width: 20vw;
   height: 20vw;
   /* height: 25%; */
@@ -37,6 +37,7 @@ li {
 
 img {
   width: 20vw;
+  border: 5px solid white;
 }
 
 .container {
@@ -69,4 +70,8 @@ img {
   border: 2px solid forestgreen;
   width: 100%;
   margin: 20px;
+}
+
+#selected {
+  border: 10px solid blue;
 }
