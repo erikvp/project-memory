@@ -72,6 +72,14 @@ img {
   margin: 20px;
 }
 
-#selected {
-  border: 10px solid blue;
+.one-selected {
+  border: 5px solid rgb(255, 0, 212);
+}
+
+.match-selected {
+  border: 5px solid rgb(6, 240, 18);
+}
+
+.no-match-selected {
+  border: 5px solid red;
 }
