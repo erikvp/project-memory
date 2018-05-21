@@ -49,27 +49,60 @@ img {
   padding: 2vw;
 }
 
+/* * * * * * * HEADER * * * * * */
+
 .header {
   border: 2px solid hotpink;
   width: 100%;
   margin: 20px;
 }
 
+/* * * * * * * GAME STATS * * * * * */
+
 .game-stats {
+  display: flex;
   border: 2px solid gold;
   width: 100%;
 }
+
+.stars-group {
+  display: flex;
+  width: 25vw;
+}
+
+.star {
+  display: flex;
+  align-items: flex-start;
+  width: 2vw;
+  height: 2vw;
+  margin: 0;
+}
+
+.duration {
+  align-self: center;
+  text-align: center;
+  width: 50vw;
+  font-size: 3em;
+}
+
+.reset {
+  align-self: center;
+  text-align: right;
+  padding-right: 50px;
+  font-size: 3em;
+  width: 25vw;
+}
+
+/* #time {
+  
+} */
+
+/* * * * * * * MAIN (Game Board) * * * * * */
 
 .main {
   border: 2px solid maroon;
   width: 100%;
   /* margin: 2vw; */
-}
-
-.footer {
-  border: 2px solid forestgreen;
-  width: 100%;
-  margin: 20px;
 }
 
 .one-selected {
@@ -82,4 +115,12 @@ img {
 
 .no-match-selected {
   border: 5px solid red;
+}
+
+/* * * * * * * FOOTER * * * * * */
+
+.footer {
+  border: 2px solid forestgreen;
+  width: 100%;
+  margin: 20px;
 }

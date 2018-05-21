@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Project - Memory Game</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
 </head>
 
@@ -16,7 +17,29 @@
       <h3>HEADER</h3>
     </header>
     <section class='game-stats'>
-      <h3>GAME STATS</h3>
+      <!-- <h3>GAME STATS</h3> -->
+      <ul class='stars-group'>
+        <li class='star'>
+          <i class="fas fa-star"></i>
+        </li>
+        <li class='star'>
+          <i class="fas fa-star"></i>
+        </li>
+        <li class='star'>
+          <i class="fas fa-star"></i>
+        </li>
+        <li class='star'>
+          <i class="fas fa-star"></i>
+        </li>
+      </ul>
+      <p class='duration'>DURATION:
+        <span id='time'>00:00</span>
+      </p>
+      <p class='reset'>
+        <span id='reset-icon'>
+          <i class="fas fa-redo-alt"></i>
+        </span>
+      </p>
     </section>
 
     <main class='main'>

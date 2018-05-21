@@ -21,19 +21,12 @@ let time = 50; //delay time between each card being shuffled
 let pairs = [0, 1, 2, 3, 4, 5, 6, 7, 0, 1, 2, 3, 4, 5, 6, 7]; // image number for x.png
 let shuffledPairs = []; //same as above but in a new order
 
-let cardCount = 0;
-let twoActiveCards = false;
+let moveCounter = 0; // increment each time a card is selected
+let twoActiveCards = false; // true when two cards have been selected
 let activeCards = []; // [card#1 id, card#1 image, card#2 id, card#2 image]
 let activeCardsQty = activeCards.length; // 0 cards = 0, 1 card = 2, 2 cards = 4
-let matchedPair = false;
+let matchedPair = false; // true when two selected cards are a match
 
-
-// COMMENTED OUT VARIABLES
-let noCardSelected = true;
-let firstCard, secondCard, firstCardID, secondCardID;
-let cardBorder_Selected = '5px solid #0505fa';
-let cardBorder_Match = '5px solid #05fa05';
-let cardBorder_NoMatch = '5px solid #fa0505';
 
 
 /* * * * * * * * * * * Setup * * * * * * * * * */
@@ -57,58 +50,37 @@ for (const card of selectedCard) {
     activeCards.push(cardID, cardImg);
     console.table(activeCards);
 
+    /* * * MOVE COUNTER * * * *
+    /*  Increment counter each time a card is selected
+    /*  Update move counter in header */
+    moveCounter = updateMoveCounter(moveCounter);
+    console.log(`moveCounter: ${moveCOunter}`);
+
     /* * * COUNT ACTIVE CARDS * * * *
-    /* if two cards have been selected: increment cardCount by 1
-    /* return true or false */
+    /* 1 active card selected, return false
+    /* 2 active cards selected, return true*/
     twoActiveCards = countActiveCards(activeCards);
     console.log(`twoActiveCards: ${twoActiveCards}`);
 
     /* * * CHECK FOR MATCHED PAIR * * * *
     /* Compare image file for both active cards
-    /* If there is only one active card selected then result is false
+    /* If only one active card is selected, result is false
     /* return true or false */
     matchedPair = checkForMatchedPair(activeCards);
     console.log(`matchedPair: ${matchedPair}`);
 
 
     /* * * UPDATE CARD STATUS * * * *
-    /* One active card: highlight blue
-    /* Two active cards match: highlight green, keep cards exposed
-    /* two active cards no match: highlight red, hide cards */
+    /* 1 active card: highlight blue
+    /* 2 active cards AND match: highlight green, keep cards exposed
+    /* 2 active cards AND no match: highlight red, hide cards */
     updateCardStatus(twoActiveCards, matchedPair, activeCards);
 
 
 
-    // cards_oneSelected = test_oneCardSelected(activeCards);
-    // twoActiveCards = highlightCards(activeCards);
-    // console.log(`Two Active Cards: ${twoActiveCards}`);
-
-    // test for matched pair and highlight cards
-    // matchedPair(twoActiveCards, activeCards);
 
 
 
-    // cardPactiveCardsairSelected = highlightFirstCard(cardPair);
-    // console.log(`cardPairSelected ${cardPairSelected}`);
-
-    // let c = card;
-    // let cid = card.id;
-    // let ca = c.getAttribute('src');
-    // console.log('image clicked', card.getAttribute('src'), cid);
-    // console.log('image id:', document.getElementById(cid));
-
-    // if (noCardSelected) { //first card selected
-    //   console.log('firstCard:', card.getAttribute('src'));
-    //   firstCard = ca;
-    //   firstCardID = cid;
-    //   console.log(`firstCard: ${firstCard} firstCardID: ${firstCardID} ${selectedCard}`);
-    //   this.style.border = cardBorder_Selected; //turns img border blue
-    //   noCardSelected = !noCardSelected;
-    // } else if (!noCardSelected) { //second card selected, Cards MATCH
-    //   console.log('IT\'s A MATCH!');
-    // } else {
-    //   console.log('NO MATCH');
-    // }
   })
 }
 
@@ -123,6 +95,11 @@ for (const card of selectedCard) {
 
 
 /* * * * * * * * * * * * Main Functions * * *  * * * * * * * * * */
+
+function updateMoveCounter(_moveCounter) {
+
+
+}
 
 function countActiveCards(_activeCards) {
   let numCards = _activeCards.length / 2;
@@ -160,43 +137,9 @@ function updateCardStatus(_twoActiveCards, _matchedPair, _activeCards) {
 } // updateCardStatus()
 
 
-// function highlightCards(_activeCards) {
-//   let highlightFirstCard = document.getElementById(_activeCards[0]);
 
-//   // Hightlight the first card selected
-//   if (_activeCards.length === 2) {
-//     // highlightFirstCard.style.border = cardBorder_Selected;
-//     highlightFirstCard.classList.add('one-selected');
-//     return false;
-//   } else if (_activeCards.length === 4) {
-//     return true;
 
-//   } else {
-//     console.log(`ERROR: Active Cards = ${_activeCards.length}`);
-//     return false;
-//   }
-// }
 
-// function matchedPair(_twoActiveCards, _activeCards) {
-//   let highlightFirstCard = document.getElementById(_activeCards[0]);
-//   let highlightSecondCard = document.getElementById(_activeCards[2]);
-
-//   if (_twoActiveCards) {
-//     if (_activeCards[1] === _activeCards[3]) {
-//       console.log(`Matched Pair: ${_activeCards[1]} = ${_activeCards[3]}`);
-//       highlightFirstCard.classList.remove('one-selected');
-//       highlightFirstCard.classList.add('match-selected');
-//       highlightSecondCard.classList.add('match-selected');
-//     } else {
-//       highlightFirstCard.classList.remove('one-selected');
-//       highlightFirstCard.classList.add('no-match-selected');
-//       highlightSecondCard.classList.add('no-match-selected');
-//     }
-//   } else {
-//     console.log('Bypass matchedPair()');
-//     return;
-//   }
-// }
 
 
 
