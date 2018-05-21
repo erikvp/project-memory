@@ -78,11 +78,12 @@ img {
   margin: 0;
 }
 
-.duration {
+.duration,
+.moves {
   align-self: center;
   text-align: center;
-  width: 50vw;
-  font-size: 3em;
+  width: 25vw;
+  font-size: 2em;
 }
 
 .reset {
@@ -91,6 +92,14 @@ img {
   padding-right: 50px;
   font-size: 3em;
   width: 25vw;
+}
+
+.fas:hover {
+  color: red;
+}
+
+.fa-spin {
+  color: green;
 }
 
 /* #time {

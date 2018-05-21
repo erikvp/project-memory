@@ -41,9 +41,15 @@ let myVar = setInterval(shuffleImages, time);
 
 /* * * * * * * * * * * EVENT LISTENERS * * * * * * * * * */
 let selectedCard = document.querySelectorAll('img');
+let restartGame = document.getElementById('reset-button');
+
+
+restartGame.addEventListener('click', function () {
+  console.log('RESTART GAME');
+});
 
 for (const card of selectedCard) {
-  card.addEventListener("click", function () {
+  card.addEventListener('click', function () {
     let cardID = this.id; //e.g. 'image7'
     let cardImg = this.getAttribute('src'); //e.g. 'images/2.png'
 
@@ -54,7 +60,7 @@ for (const card of selectedCard) {
     /*  Increment counter each time a card is selected
     /*  Update move counter in header */
     moveCounter = updateMoveCounter(moveCounter);
-    console.log(`moveCounter: ${moveCOunter}`);
+    console.log(`moveCounter: ${moveCounter}`);
 
     /* * * COUNT ACTIVE CARDS * * * *
     /* 1 active card selected, return false
@@ -77,11 +83,7 @@ for (const card of selectedCard) {
     updateCardStatus(twoActiveCards, matchedPair, activeCards);
 
 
-
-
-
-
-  })
+  });
 }
 
 
@@ -97,7 +99,13 @@ for (const card of selectedCard) {
 /* * * * * * * * * * * * Main Functions * * *  * * * * * * * * * */
 
 function updateMoveCounter(_moveCounter) {
+  let moves = document.getElementById('move-counter');
+  let counter = _moveCounter + 1;
+  let counterString = counter.toString();
+  console.log(`counter: ${counterString}`);
 
+  moves.textContent = counter;
+  return counter;
 
 }
 
