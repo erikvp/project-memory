@@ -21,9 +21,10 @@ let time = 50; //delay time between each card being shuffled
 let pairs = [0, 1, 2, 3, 4, 5, 6, 7, 0, 1, 2, 3, 4, 5, 6, 7]; // image number for x.png
 let shuffledPairs = []; //same as above but in a new order
 
+let timeStamp = 0;
 let moveCounter = 0; // increment each time a card is selected
 let twoActiveCards = false; // true when two cards have been selected
-let activeCards = []; // [card#1 id, card#1 image, card#2 id, card#2 image]
+let activeCards = []; // img [id 1st card, image 1st card, id 2nd card, image 2nd card]
 let activeCardsQty = activeCards.length; // 0 cards = 0, 1 card = 2, 2 cards = 4
 let matchedPair = false; // true when two selected cards are a match
 
@@ -55,6 +56,13 @@ for (const card of selectedCard) {
 
     activeCards.push(cardID, cardImg);
     console.table(activeCards);
+
+    /* * * START TIMER * * * *
+    /* begin timer when first card is selected
+    /* end timer when last card is selected */
+    timeStamp = gameTimer();
+    console.log(`timeStamp: ${timeStamp}`);
+
 
     /* * * MOVE COUNTER * * * *
     /*  Increment counter each time a card is selected
@@ -98,6 +106,11 @@ for (const card of selectedCard) {
 
 /* * * * * * * * * * * * Main Functions * * *  * * * * * * * * * */
 
+function gameTimer() {
+  // setTime = setTimeout("setTimeFunction( )", 500);
+  console.log('timer goes here');
+}
+
 function updateMoveCounter(_moveCounter) {
   let moves = document.getElementById('move-counter');
   let counter = _moveCounter + 1;
@@ -128,19 +141,22 @@ function updateCardStatus(_twoActiveCards, _matchedPair, _activeCards) {
   let firstCard = document.getElementById(activeCards[0]);
   let secondCard = document.getElementById(activeCards[2]);
 
+
   // One Active Card
   if (!_twoActiveCards) {
-    firstCard.classList.toggle('one-selected');
+    firstCard.classList.add('one-selected', 'show-card');
+    // firstCard.classList.add('show-card');
   }
   // Two Active Cards AND Matched Pair
   else if (_twoActiveCards && _matchedPair) {
     firstCard.classList.toggle('match-selected');
-    secondCard.classList.toggle('match-selected');
+    secondCard.classList.add('match-selected', 'show-card');
   }
   // Two Active Cards AND No Matched Pair
   else {
     firstCard.classList.toggle('no-match-selected');
-    secondCard.classList.toggle('no-match-selected');
+    secondCard.classList.add('no-match-selected', 'show-card');
+
   }
 } // updateCardStatus()
 
