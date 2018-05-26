@@ -149,14 +149,28 @@ function updateCardStatus(_twoActiveCards, _matchedPair, _activeCards) {
   }
   // Two Active Cards AND Matched Pair
   else if (_twoActiveCards && _matchedPair) {
-    firstCard.classList.toggle('match-selected');
+    firstCard.classList.add('match-selected');
     secondCard.classList.add('match-selected', 'show-card');
+    setTimeout(matched, 500);
   }
   // Two Active Cards AND No Matched Pair
   else {
-    firstCard.classList.toggle('no-match-selected');
+    firstCard.classList.add('no-match-selected');
     secondCard.classList.add('no-match-selected', 'show-card');
+    setTimeout(hideCards, 500);
 
+  }
+
+  function hideCards() {
+    console.log('hideCards');
+    firstCard.classList.remove('show-card', 'no-match-selected', 'one-selected');
+    secondCard.classList.remove('show-card', 'no-match-selected');
+  }
+
+  function matched() {
+    console.log('matched');
+    firstCard.classList.remove('match-selected', 'one-selected');
+    secondCard.classList.remove('match-selected');
   }
 } // updateCardStatus()
 
