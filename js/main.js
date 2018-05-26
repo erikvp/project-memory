@@ -22,11 +22,14 @@ let pairs = [0, 1, 2, 3, 4, 5, 6, 7, 0, 1, 2, 3, 4, 5, 6, 7]; // image number fo
 let shuffledPairs = []; //same as above but in a new order
 
 let timeStamp = 0;
-let moveCounter = 0; // increment each time a card is selected
+let moveCounter = 0; // increment each time two cards are selected
+let correctCounter = 0
 let twoActiveCards = false; // true when two cards have been selected
 let activeCards = []; // img [id 1st card, image 1st card, id 2nd card, image 2nd card]
-let activeCardsQty = activeCards.length; // 0 cards = 0, 1 card = 2, 2 cards = 4
+// let activeCardsQty = activeCards.length; // 0 cards = 0, 1 card = 2, 2 cards = 4
 let matchedPair = false; // true when two selected cards are a match
+let gameStatus = []; // [timeStamp, moveCounter, twoActiveCards, activeCards, matchedPair]
+
 
 
 
@@ -47,6 +50,7 @@ let restartGame = document.getElementById('reset-button');
 
 restartGame.addEventListener('click', function () {
   console.log('RESTART GAME');
+
 });
 
 for (const card of selectedCard) {
@@ -64,17 +68,22 @@ for (const card of selectedCard) {
     console.log(`timeStamp: ${timeStamp}`);
 
 
-    /* * * MOVE COUNTER * * * *
-    /*  Increment counter each time a card is selected
-    /*  Update move counter in header */
-    moveCounter = updateMoveCounter(moveCounter);
-    console.log(`moveCounter: ${moveCounter}`);
+
 
     /* * * COUNT ACTIVE CARDS * * * *
     /* 1 active card selected, return false
     /* 2 active cards selected, return true*/
-    twoActiveCards = countActiveCards(activeCards);
+    activeCards = countActiveCards(activeCards);
+    if (activeCards.length === 4) {
+      twoActiveCards = true;
+    }
     console.log(`twoActiveCards: ${twoActiveCards}`);
+
+    /* * * MOVE COUNTER * * * *
+        /*  Increment counter each time two cards are selected
+        /*  Update move counter in header */
+    moveCounter = updateMoveCounter(moveCounter, twoActiveCards);
+    console.log(`moveCounter: ${moveCounter}`);
 
     /* * * CHECK FOR MATCHED PAIR * * * *
     /* Compare image file for both active cards
@@ -82,6 +91,9 @@ for (const card of selectedCard) {
     /* return true or false */
     matchedPair = checkForMatchedPair(activeCards);
     console.log(`matchedPair: ${matchedPair}`);
+    if (matchedPair) {
+      correctCounter = correctCounter + 1;
+    }
 
 
     /* * * UPDATE CARD STATUS * * * *
@@ -89,6 +101,24 @@ for (const card of selectedCard) {
     /* 2 active cards AND match: highlight green, keep cards exposed
     /* 2 active cards AND no match: highlight red, hide cards */
     updateCardStatus(twoActiveCards, matchedPair, activeCards);
+
+    /* * * CHECK GAME STATUS * * * *
+    /* Check if game over
+    /* Update variables accordingly 
+    /* gameStatus = [timeStamp, moveCounter, twoActiveCards, activeCards, matchedPair] */
+    gameStatus = checkGameStatus(timeStamp, moveCounter, correctCounter, twoActiveCards, activeCards, matchedPair);
+    timeStamp = gameStatus[0];
+    moveCounter = gameStatus[1];
+    correctCounter = gameStatus[2];
+    twoActiveCards = gameStatus[3];
+    activeCards = gameStatus[4];
+    matchedPair = gameStatus[5];
+    console.log(`timeStamp: ${timeStamp}`);
+    console.log(`moveCounter: ${moveCounter}`);
+    console.log(`correctCounter: ${correctCounter}`);
+    console.log(`twoActiveCards: ${twoActiveCards}`);
+    console.table(activeCards);
+    console.log(`matchedPair: ${matchedPair}`);
 
 
   });
@@ -109,24 +139,23 @@ for (const card of selectedCard) {
 function gameTimer() {
   // setTime = setTimeout("setTimeFunction( )", 500);
   console.log('timer goes here');
+  return '00:30';
 }
 
-function updateMoveCounter(_moveCounter) {
-  let moves = document.getElementById('move-counter');
-  let counter = _moveCounter + 1;
-  let counterString = counter.toString();
-  console.log(`counter: ${counterString}`);
 
-  moves.textContent = counter;
-  return counter;
-
-}
 
 function countActiveCards(_activeCards) {
-  let numCards = _activeCards.length / 2;
-  let result = (numCards === 2) ? true : false;
-  console.log(`countActiveCards(): ${result}`);
-  return result;
+
+  if (_activeCards.length === 4) {
+    if (_activeCards[0] === _activeCards[2]) {
+      console.log('SAME CARD SELECTED!');
+      _activeCards.pop();
+      _activeCards.pop();
+    }
+
+  }
+  console.log(`countActiveCards(): ${_activeCards}`);
+  return _activeCards;
 }
 
 function checkForMatchedPair(_activeCards) {
@@ -135,6 +164,20 @@ function checkForMatchedPair(_activeCards) {
   let result = (firstCardImage === secondCardImage) ? true : false;
   console.log(`checkForMatchedPair(): ${result}`);
   return result;
+}
+
+function updateMoveCounter(_moveCounter, _twoActiveCards) {
+  let moves = document.getElementById('move-counter');
+  let incCounter = _moveCounter + 1;
+  let counterString = incCounter.toString();
+  console.log(`counter: ${counterString}`);
+
+  if (_twoActiveCards) {
+    moves.textContent = incCounter;
+    return incCounter;
+  } else {
+    return _moveCounter;
+  }
 }
 
 function updateCardStatus(_twoActiveCards, _matchedPair, _activeCards) {
@@ -174,7 +217,23 @@ function updateCardStatus(_twoActiveCards, _matchedPair, _activeCards) {
   }
 } // updateCardStatus()
 
+function checkGameStatus(_timeStamp, _moveCounter, _correctCounter, _twoActiveCards, _activeCards, _matchedPair) {
+  let gameVariables = [_timeStamp, _moveCounter, _correctCounter, _twoActiveCards, _activeCards, _matchedPair];
 
+  if (_correctCounter === 8) {
+    console.log('GAME OVER');
+    gameVariables = [0, 0, 0, false, [], false];
+
+
+  } else if (_twoActiveCards) {
+    gameVariables = [_timeStamp, _moveCounter, _correctCounter, false, [], false];
+  } else {
+    console.log('checkGameStatus: no Update');
+  }
+  return gameVariables;
+
+
+}
 
 
 
