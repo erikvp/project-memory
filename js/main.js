@@ -37,7 +37,6 @@ let gameStatus = []; // [timeStamp, moveCounter, twoActiveCards, activeCards, ma
 shuffledPairs = shufflePairs(pairs);
 console.log(shuffledPairs);
 let num = 0;
-// let shuffles = 15;
 let myVar = setInterval(shuffleImages, time);
 
 
@@ -223,6 +222,7 @@ function checkGameStatus(_timeStamp, _moveCounter, _correctCounter, _twoActiveCa
   if (_correctCounter === 8) {
     console.log('GAME OVER');
     gameVariables = [0, 0, 0, false, [], false];
+    gameOver();
 
 
   } else if (_twoActiveCards) {
@@ -231,6 +231,13 @@ function checkGameStatus(_timeStamp, _moveCounter, _correctCounter, _twoActiveCa
     console.log('checkGameStatus: no Update');
   }
   return gameVariables;
+
+  function gameOver() {
+    let hideBoard = document.querySelector('.game-board');
+    let gameResults = document.querySelector('.game-results')
+    hideBoard.style.display = 'none';
+    gameResults.style.display = 'block';
+  }
 
 
 }

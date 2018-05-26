@@ -103,6 +103,11 @@ li {
 
 /* * * * * * * MAIN (Game Board) * * * * * */
 
+.game-results {
+  display: none;
+  text-align: center;
+}
+
 .main {
   border: 2px solid maroon;
   width: 100%;
