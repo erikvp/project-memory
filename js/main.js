@@ -1,24 +1,5 @@
 console.log('connected');
-// let image0 = document.getElementById('image0');
-// let image1 = document.getElementById('image1');
-// let image2 = document.getElementById('image2');
-// let image3 = document.getElementById('image3');
-// let image4 = document.getElementById('image4');
-// let image5 = document.getElementById('image5');
-// let image6 = document.getElementById('image6');
-// let image7 = document.getElementById('image7');
-// let image8 = document.getElementById('image8');
-// let image9 = document.getElementById('image9');
-// let image10 = document.getElementById('image10');
-// let image11 = document.getElementById('image11');
-// let image12 = document.getElementById('image12');
-// let image13 = document.getElementById('image13');
-// let image14 = document.getElementById('image14');
-// let image15 = document.getElementById('image15');
-// let imageArr = [image0, image1, image2, image3, image4, image5, image6, image7, image8, image9, image10, image11, image12, image13, image14, image15];
 
-// const gridSize = 16;
-// let time = 50; //delay time between each card being shuffled
 const row = 4;
 const col = 4;
 let pairs = [0, 1, 2, 3, 4, 5, 6, 7, 0, 1, 2, 3, 4, 5, 6, 7]; // image number for x.png
@@ -29,9 +10,7 @@ let moveCounter = 0; // increment each time two cards are selected
 let correctCounter = 0
 let twoActiveCards = false; // true when two cards have been selected
 let activeCards = []; // img [id 1st card, image 1st card, id 2nd card, image 2nd card]
-// let activeCardsQty = activeCards.length; // 0 cards = 0, 1 card = 2, 2 cards = 4
 let matchedPair = false; // true when two selected cards are a match
-
 
 
 
@@ -224,7 +203,6 @@ function updateCardStatus(_twoActiveCards, _matchedPair, _activeCards) {
   }
 } // updateCardStatus()
 
-// function checkGameStatus(timeStamp, moveCounter, correctCounter, twoActiveCards, activeCards, matchedPair) {
 function checkGameStatus() {
   if (correctCounter === 8) {
     console.log('GAME OVER');
@@ -303,9 +281,8 @@ function shufflePairs(pairs) {
   return pairs;
 }
 
-// GENERATE CARD GRID TABLE
+// GENERATE CARD TABLE
 function makeGrid(_row, _col, _shuffledPairs) {
-  // let canvasTable = document.getElementById('canvasTable'); // table used for drawing artwork
   let table = '';
   let cardTable = document.getElementById('card-table');
   let idNum = 0;
@@ -321,16 +298,13 @@ function makeGrid(_row, _col, _shuffledPairs) {
 
       //add <td> tags equal to _col
       //each <td> has an id equal to the row/col.  e.g. id=A4
-      // OLD - Removed 'onclick' and placed inside sketch.js file
-      // table += '<td class="pixel" id=' + _rowID[r] + _colID[c] + ' onclick="changeColor(this)"></td>'; // add cols
       table += tdImgString; // add cols
       idNum++;
 
-      // table += '<td class="pixel" id=' + rowID[r] + colID[c] + '></td>'; // add cols
     }
     //add closing </tr> tag to each completed row
     table += '</tr>';
   }
-  // add table elements inside of <table id='pixelTable' class='pixel'></table>
+  // add table elements inside of <table id='card-table'></table>
   cardTable.innerHTML = table;
 }
