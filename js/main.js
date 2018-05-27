@@ -17,6 +17,7 @@ console.log('connected');
 // let image15 = document.getElementById('image15');
 // let imageArr = [image0, image1, image2, image3, image4, image5, image6, image7, image8, image9, image10, image11, image12, image13, image14, image15];
 
+const gridSize = 16;
 let time = 50; //delay time between each card being shuffled
 let pairs = [0, 1, 2, 3, 4, 5, 6, 7, 0, 1, 2, 3, 4, 5, 6, 7]; // image number for x.png
 let shuffledPairs = []; //same as above but in a new order
@@ -35,7 +36,7 @@ let gameStatus = []; // [timeStamp, moveCounter, twoActiveCards, activeCards, ma
 
 /* * * * * * * * * * * Setup * * * * * * * * * */
 shuffledPairs = shufflePairs(pairs);
-console.table(shuffledPairs);
+makeGrid(shuffledPairs);
 // let num = 0;
 // let myVar = setInterval(shuffleImages, time);
 
@@ -281,4 +282,36 @@ function shufflePairs(pairs) {
   }
 
   return pairs;
+}
+
+// GENERATE CARD GRID TABLE
+function makeGrid(_shuffledPairs) {
+  // let canvasTable = document.getElementById('canvasTable'); // table used for drawing artwork
+  let table = '';
+  let cardTable = document.getElementById('card-table');
+  let idNum = 0;
+
+  //Create grid rows
+  for (let r = 0; r < 4; r++) {
+
+    table += '<tr class="cards-row">'; // add row opening with <tr> tag
+    //Create grid columns
+    for (let c = 0; c < 4; c++) {
+      let img = "<img id='image" + idNum + "' src='images/" + _shuffledPairs[idNum] + ".png' alt='nautical flag'>"
+      let tdString = "<td class='card' id='card" + idNum + "'>" + img + "</td>";
+
+      //add <td> tags equal to _col
+      //each <td> has an id equal to the row/col.  e.g. id=A4
+      // OLD - Removed 'onclick' and placed inside sketch.js file
+      // table += '<td class="pixel" id=' + _rowID[r] + _colID[c] + ' onclick="changeColor(this)"></td>'; // add cols
+      table += tdString; // add cols
+      idNum++;
+
+      // table += '<td class="pixel" id=' + rowID[r] + colID[c] + '></td>'; // add cols
+    }
+    //add closing </tr> tag to each completed row
+    table += '</tr>';
+  }
+  // add table elements inside of <table id='pixelTable' class='pixel'></table>
+  cardTable.innerHTML = table;
 }

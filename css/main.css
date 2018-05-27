@@ -140,6 +140,12 @@ li.card {
   background: gray;
 }
 
+td {
+  width: 20vw;
+  border: 5px solid black;
+  background: gray;
+}
+
 .show-card {
   animation-name: show-card;
   animation-duration: 0.25s;
