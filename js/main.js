@@ -1,21 +1,21 @@
 console.log('connected');
-let image0 = document.getElementById('image0');
-let image1 = document.getElementById('image1');
-let image2 = document.getElementById('image2');
-let image3 = document.getElementById('image3');
-let image4 = document.getElementById('image4');
-let image5 = document.getElementById('image5');
-let image6 = document.getElementById('image6');
-let image7 = document.getElementById('image7');
-let image8 = document.getElementById('image8');
-let image9 = document.getElementById('image9');
-let image10 = document.getElementById('image10');
-let image11 = document.getElementById('image11');
-let image12 = document.getElementById('image12');
-let image13 = document.getElementById('image13');
-let image14 = document.getElementById('image14');
-let image15 = document.getElementById('image15');
-let imageArr = [image0, image1, image2, image3, image4, image5, image6, image7, image8, image9, image10, image11, image12, image13, image14, image15];
+// let image0 = document.getElementById('image0');
+// let image1 = document.getElementById('image1');
+// let image2 = document.getElementById('image2');
+// let image3 = document.getElementById('image3');
+// let image4 = document.getElementById('image4');
+// let image5 = document.getElementById('image5');
+// let image6 = document.getElementById('image6');
+// let image7 = document.getElementById('image7');
+// let image8 = document.getElementById('image8');
+// let image9 = document.getElementById('image9');
+// let image10 = document.getElementById('image10');
+// let image11 = document.getElementById('image11');
+// let image12 = document.getElementById('image12');
+// let image13 = document.getElementById('image13');
+// let image14 = document.getElementById('image14');
+// let image15 = document.getElementById('image15');
+// let imageArr = [image0, image1, image2, image3, image4, image5, image6, image7, image8, image9, image10, image11, image12, image13, image14, image15];
 
 let time = 50; //delay time between each card being shuffled
 let pairs = [0, 1, 2, 3, 4, 5, 6, 7, 0, 1, 2, 3, 4, 5, 6, 7]; // image number for x.png
@@ -35,9 +35,9 @@ let gameStatus = []; // [timeStamp, moveCounter, twoActiveCards, activeCards, ma
 
 /* * * * * * * * * * * Setup * * * * * * * * * */
 shuffledPairs = shufflePairs(pairs);
-console.log(shuffledPairs);
-let num = 0;
-let myVar = setInterval(shuffleImages, time);
+console.table(shuffledPairs);
+// let num = 0;
+// let myVar = setInterval(shuffleImages, time);
 
 
 
