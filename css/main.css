@@ -48,6 +48,7 @@ li {
 
 .header {
   border: 2px solid hotpink;
+  text-align: center;
   width: 100%;
   margin: 20px;
 }
@@ -71,6 +72,9 @@ li {
   width: 2vw;
   height: 2vw;
   margin: 0;
+  padding-left: 1vw;
+  padding-right: 1vw;
+  font-size: 2vw;
 }
 
 .duration,
