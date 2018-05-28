@@ -13,8 +13,6 @@ let activeCards = []; // img [id 1st card, image 1st card, id 2nd card, image 2n
 let matchedPair = false; // true when two selected cards are a match
 
 
-
-
 /* * * * * * * * * * * Setup * * * * * * * * * */
 shuffledPairs = shufflePairs(pairs);
 makeGrid(row, col, shuffledPairs);
@@ -46,18 +44,7 @@ restartGame.addEventListener('click', function () {
 
 });
 
-
-
-for (let card of selectedCard) {
-  card.addEventListener('click', function () {
-    let cardID = this.id; //e.g. 'image7'
-    let cardImg = this.getAttribute('src'); //e.g. 'images/2.png'
-    console.log(cardID);
-  });
-}
-
-
-
+// EVENT LISTENERS FOR 16 CARDS
 for (let card of selectedCard) {
   // CHECK FOR CLICKED IMAGE
   card.addEventListener('click', function () {
@@ -65,9 +52,6 @@ for (let card of selectedCard) {
     let cardImg = this.getAttribute('src'); //e.g. 'images/2.png'
     let testCard = document.getElementById(cardID);
 
-
-
-    console.log('CLICKED');
     if (testCard.classList.contains('show-card')) {
       console.log('this card is already selected')
     } else {
@@ -156,17 +140,17 @@ function gameTimer() {
 }
 
 
-function countActiveCards(_activeCards) {
-  if (_activeCards.length === 4) {
+function countActiveCards(activeCards) {
+  if (activeCards.length === 4) {
     return true;
   } else {
     return false;
   }
 }
 
-function checkForMatchedPair(_activeCards) {
-  let firstCardImage = _activeCards[1];
-  let secondCardImage = _activeCards[3];
+function checkForMatchedPair(activeCards) {
+  let firstCardImage = activeCards[1];
+  let secondCardImage = activeCards[3];
   let result = (firstCardImage === secondCardImage) ? true : false;
   // console.log(`checkForMatchedPair(): ${result}`);
   return result;
@@ -197,7 +181,6 @@ function updateCardStatus(_twoActiveCards, _matchedPair, _activeCards) {
   // One Active Card
   else if (!_twoActiveCards) {
     firstCard.classList.add('one-selected', 'show-card');
-    // firstCard.classList.add('show-card');
   }
   // Two Active Cards AND Matched Pair
   else if (_twoActiveCards && _matchedPair) {
@@ -332,8 +315,6 @@ function makeGrid(_row, _col, _shuffledPairs) {
       let img = `<img id='image${idNum}' src='images/${_shuffledPairs[idNum]}.png' alt='nautical flag'>`;
       let tdImgString = `<td class='card' id='card${idNum}'> ${img}</td>`;
 
-      //add <td> tags equal to _col
-      //each <td> has an id equal to the row/col.  e.g. id=A4
       table += tdImgString; // add cols
       idNum++;
 
