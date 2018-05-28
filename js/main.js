@@ -6,7 +6,9 @@ let pairs = [0, 1, 2, 3, 4, 5, 6, 7, 0, 1, 2, 3, 4, 5, 6, 7]; // image number fo
 let shuffledPairs = []; //same as above but in a new order
 
 let timeStamp = 0;
+let timerRunning = false;
 let seconds = 00;
+let interval;
 let moveCounter = 0; // increment each time two cards are selected
 let correctCounter = 0
 let twoActiveCards = false; // true when two cards have been selected
@@ -53,6 +55,13 @@ for (let card of selectedCard) {
     let cardImg = this.getAttribute('src'); //e.g. 'images/2.png'
     let testCard = document.getElementById(cardID);
 
+    if (!timerRunning) {
+      console.log('startTimer');
+      // clearInterval(Interval);
+      Interval = setInterval(startTimer, 1000); // update every 1000ms
+      timerRunning = true;
+    }
+
     if (testCard.classList.contains('show-card')) {
       console.log('this card is already selected')
     } else {
@@ -62,8 +71,8 @@ for (let card of selectedCard) {
 
       //* * * START TIMER * * * *
       //* begin timer when first card is selected
-      //* end timer when last card is selected 
-      timeStamp = gameTimer();
+      //* end timer when last card is selected
+      // timeStamp = gameTimer();
       // console.log(`timeStamp: ${timeStamp}`);
 
 
@@ -134,58 +143,39 @@ for (let card of selectedCard) {
 
 //* * * * * * * * * * * * Main Functions * * *  * * * * * * * * * *
 
-function gameTimer() {
-  clearInterval(Interval);
-  Interval = setInterval(startTimer, 1000); // update every 1000ms
-}
+// function gameTimer() {
+//   clearInterval(Interval);
+//   Interval = setInterval(startTimer, 1000); // update every 1000ms
+// }
 
 function startTimer() {
+  let time = document.getElementById('time');
 
-  // For minutes : seconds comment out 'tens' section
-
-  // if (tens <= 9) {
-  //   appendTens.innerHTML = "0" + tens;
-  // }
-
-  // if (tens > 9) {
-  //   appendTens.innerHTML = tens;
-  // }
-
-  // if (tens > 99) {
-  //   console.log("seconds");
-  //   seconds++;
-  //   appendSeconds.innerHTML = "0" + seconds;
-  //   tens = 0;
-  //   appendTens.innerHTML = "0" + 0;
-  // }
-  // END comment out section for 'tens'
-
-
-  // Uncomment this line for minutes : seconds
   seconds++;
+  console.log(`Seconds:${seconds}`);
 
   if (seconds <= 9) {
-    appendSeconds.innerHTML = "0" + seconds;
+    time.innerHTML = '00:0' + seconds;
   }
 
   if (seconds > 9) {
-    appendSeconds.innerHTML = seconds;
+    time.innerHTML = '00:' + seconds;
   }
 
-  if (seconds > 59) {
-    minutes++;
-    appendMinutes.innerHTML = "0" + minutes;
-    seconds = 0;
-    appendSeconds.innerHTML = "0" + 0;
-  }
+  // if (seconds > 59) {
+  //   minutes++;
+  //   appendMinutes.innerHTML = "0" + minutes;
+  //   seconds = 0;
+  //   appendSeconds.innerHTML = "0" + 0;
+  // }
 
-  if (minutes <= 9) {
-    appendMinutes.innerHTML = "0" + minutes;
-  }
+  // if (minutes <= 9) {
+  //   appendMinutes.innerHTML = "0" + minutes;
+  // }
 
-  if (minutes > 9) {
-    appendMinutes.innerHTML = minutes;
-  }
+  // if (minutes > 9) {
+  //   appendMinutes.innerHTML = minutes;
+  // }
 }
 
 
@@ -288,6 +278,9 @@ function checkGameStatus() {
 
 function resetVariables() {
   timeStamp = 0;
+  clearInterval(Interval);
+  seconds = 00;
+  timerRunning = false;
   moveCounter = 0;
   correctCounter = 0;
   twoActiveCards = false;
