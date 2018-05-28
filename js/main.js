@@ -325,10 +325,10 @@ function checkGameStatus() {
 
     hideBoard.style.display = 'none';
     hideStats.style.display = 'none';
-    gameResults.style.display = 'block';
+    gameResults.style.display = 'flex';
     starRating.innerHTML = starHTML;
-    finalTime.innerHTML = `TIME ${timeStamp}`;
-    finalMoves.innerHTML = `MOVES ${moveCounter}`;
+    finalTime.innerHTML = `TIME - ${timeStamp}`;
+    finalMoves.innerHTML = `MOVES - ${moveCounter}`;
   }
 } // checkGameStatus
 
