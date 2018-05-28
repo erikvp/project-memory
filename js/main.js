@@ -7,7 +7,8 @@ let shuffledPairs = []; //same as above but in a new order
 
 let timeStamp = 0;
 let timerRunning = false;
-let seconds = 00;
+let seconds = 0;
+let minutes = 0;
 let interval;
 let moveCounter = 0; // increment each time two cards are selected
 let correctCounter = 0
@@ -150,32 +151,39 @@ for (let card of selectedCard) {
 
 function startTimer() {
   let time = document.getElementById('time');
+  let secString;
+  let minString;
 
   seconds++;
   console.log(`Seconds:${seconds}`);
 
   if (seconds <= 9) {
-    time.innerHTML = '00:0' + seconds;
+    secString = '0' + seconds;
   }
 
   if (seconds > 9) {
-    time.innerHTML = '00:' + seconds;
+    secString = seconds;
   }
 
-  // if (seconds > 59) {
-  //   minutes++;
-  //   appendMinutes.innerHTML = "0" + minutes;
-  //   seconds = 0;
-  //   appendSeconds.innerHTML = "0" + 0;
-  // }
+  if (seconds > 59) {
+    seconds = 0;
+    secString = '00';
+    minutes++;
+  }
 
-  // if (minutes <= 9) {
-  //   appendMinutes.innerHTML = "0" + minutes;
-  // }
+  if (minutes <= 9) {
+    minString = '0' + minutes;
+  }
 
-  // if (minutes > 9) {
-  //   appendMinutes.innerHTML = minutes;
-  // }
+  if (minutes > 9) {
+    minString = minutes;
+  }
+
+  if (minutes > 59) {
+    minString = 'ENDED';
+    secString = '';
+  }
+  time.innerHTML = minString + ':' + secString;
 }
 
 
@@ -279,7 +287,8 @@ function checkGameStatus() {
 function resetVariables() {
   timeStamp = 0;
   clearInterval(Interval);
-  seconds = 00;
+  seconds = 0;
+  minutes = 0;
   timerRunning = false;
   moveCounter = 0;
   correctCounter = 0;
