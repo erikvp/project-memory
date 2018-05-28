@@ -5,14 +5,14 @@ const col = 4;
 let pairs = [0, 1, 2, 3, 4, 5, 6, 7, 0, 1, 2, 3, 4, 5, 6, 7]; // image number for x.png
 let shuffledPairs = []; //same as above but in a new order
 
-let timeStamp = 0;
-let timerRunning = false;
-let seconds = 0;
-let minutes = 0;
-let interval;
-let stars = 4;
+let timeStamp = 0; //string formatted as 00:00 in min:sec
+let timerRunning = false; //true when first card clicked and timer starts
+let seconds = 0; //timer seconds
+let minutes = 0; // timer minutes
+let interval; // timer call function every 1s.
+let stars = 4; // star rating 0 to 4
 let moveCounter = 0; // increment each time two cards are selected
-let correctCounter = 0
+let correctCounter = 0 // number of correct pairs matched, game over = 8
 let twoActiveCards = false; // true when two cards have been selected
 let activeCards = []; // img [id 1st card, image 1st card, id 2nd card, image 2nd card]
 let matchedPair = false; // true when two selected cards are a match
@@ -375,14 +375,14 @@ function resetGameBoard() {
 
 /* * * * * * * * * * * * Setup Functions * * *  * * * * * * * * * */
 
-function shuffleImages() {
-  imageArr[num].src = 'images/' + shuffledPairs[num] + '.png';
-  num++;
+// function shuffleImages() {
+//   imageArr[num].src = 'images/' + shuffledPairs[num] + '.png';
+//   num++;
 
-  if (num === imageArr.length) {
-    clearInterval(myVar);
-  }
-}
+//   if (num === imageArr.length) {
+//     clearInterval(myVar);
+//   }
+// }
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shufflePairs(pairs) {
