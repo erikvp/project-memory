@@ -10,6 +10,7 @@ let timerRunning = false;
 let seconds = 0;
 let minutes = 0;
 let interval;
+let stars = 4;
 let moveCounter = 0; // increment each time two cards are selected
 let correctCounter = 0
 let twoActiveCards = false; // true when two cards have been selected
@@ -45,7 +46,6 @@ restartGame.addEventListener('click', function () {
   shuffleImages(shuffledPairs);
   resetVariables();
   resetHeader();
-
 });
 
 // EVENT LISTENERS FOR 16 CARDS
@@ -56,26 +56,25 @@ for (let card of selectedCard) {
     let cardImg = this.getAttribute('src'); //e.g. 'images/2.png'
     let testCard = document.getElementById(cardID);
 
+    //* * * START TIMER * * * *
+    //* begin timer when first card is selected
+    //* end timer when last card is selected
+    // timeStamp = gameTimer();
+    // console.log(`timeStamp: ${timeStamp}`);
     if (!timerRunning) {
       console.log('startTimer');
       // clearInterval(Interval);
       Interval = setInterval(startTimer, 1000); // update every 1000ms
       timerRunning = true;
     }
-
+    // TEST IF CLICKED CARD IS ALREADY SHOWING - DO NOTHING
     if (testCard.classList.contains('show-card')) {
       console.log('this card is already selected')
-    } else {
+    }
+    // CHECK CLICKED CARD
+    else {
       activeCards.push(cardID, cardImg);
       // console.table(activeCards);
-
-
-      //* * * START TIMER * * * *
-      //* begin timer when first card is selected
-      //* end timer when last card is selected
-      // timeStamp = gameTimer();
-      // console.log(`timeStamp: ${timeStamp}`);
-
 
       //* * * COUNT ACTIVE CARDS * * * *
       //* 1 active card selected, return false
@@ -99,6 +98,7 @@ for (let card of selectedCard) {
         correctCounter = correctCounter + 1;
       }
 
+      updateStars(moveCounter, correctCounter, minutes, seconds);
 
       //* * * UPDATE CARD STATUS * * * *
       //* 1 active card: highlight blue
@@ -256,6 +256,22 @@ function updateCardStatus(_twoActiveCards, _matchedPair, _activeCards) {
   }
 } // updateCardStatus()
 
+function updateStars(moveCounter, correctCounter, minutes, seconds) {
+  let wrong = moveCounter - correctCounter;
+
+  if (wrong <= 1 && minutes === 0 && seconds <= 30) {
+    console.log('STARS: * * * * ');
+  } else if (wrong <= 2 && minutes === 0 && seconds <= 45) {
+    console.log('STARS: * * * ');
+  } else if (wrong <= 3 && minutes < 1) {
+    console.log('STARS: * * ');
+  } else if (wrong <= 4) {
+    console.log('STARS: * ');
+  } else {
+    console.log('STARS: NONE');
+  }
+}
+
 function checkGameStatus() {
   if (correctCounter === 8) {
     console.log('GAME OVER');
@@ -295,6 +311,7 @@ function resetVariables() {
   seconds = 0;
   minutes = 0;
   timerRunning = false;
+  stars = 4;
   moveCounter = 0;
   correctCounter = 0;
   twoActiveCards = false;

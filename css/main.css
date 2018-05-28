@@ -67,10 +67,10 @@ h1 {
   width: 100%;
 }
 
-.stars-group {
+/* .stars-group {
   display: flex;
   width: 25vw;
-}
+} */
 
 .star {
   display: flex;
@@ -87,6 +87,7 @@ h1 {
   color: white;
 }
 
+.stars-group,
 .duration,
 .moves {
   align-self: center;
