@@ -6,6 +6,7 @@ let pairs = [0, 1, 2, 3, 4, 5, 6, 7, 0, 1, 2, 3, 4, 5, 6, 7]; // image number fo
 let shuffledPairs = []; //same as above but in a new order
 
 let timeStamp = 0;
+let seconds = 00;
 let moveCounter = 0; // increment each time two cards are selected
 let correctCounter = 0
 let twoActiveCards = false; // true when two cards have been selected
@@ -134,9 +135,57 @@ for (let card of selectedCard) {
 //* * * * * * * * * * * * Main Functions * * *  * * * * * * * * * *
 
 function gameTimer() {
-  // setTime = setTimeout("setTimeFunction( )", 500);
-  // console.log('timer goes here');
-  return '00:30';
+  clearInterval(Interval);
+  Interval = setInterval(startTimer, 1000); // update every 1000ms
+}
+
+function startTimer() {
+
+  // For minutes : seconds comment out 'tens' section
+
+  // if (tens <= 9) {
+  //   appendTens.innerHTML = "0" + tens;
+  // }
+
+  // if (tens > 9) {
+  //   appendTens.innerHTML = tens;
+  // }
+
+  // if (tens > 99) {
+  //   console.log("seconds");
+  //   seconds++;
+  //   appendSeconds.innerHTML = "0" + seconds;
+  //   tens = 0;
+  //   appendTens.innerHTML = "0" + 0;
+  // }
+  // END comment out section for 'tens'
+
+
+  // Uncomment this line for minutes : seconds
+  seconds++;
+
+  if (seconds <= 9) {
+    appendSeconds.innerHTML = "0" + seconds;
+  }
+
+  if (seconds > 9) {
+    appendSeconds.innerHTML = seconds;
+  }
+
+  if (seconds > 59) {
+    minutes++;
+    appendMinutes.innerHTML = "0" + minutes;
+    seconds = 0;
+    appendSeconds.innerHTML = "0" + 0;
+  }
+
+  if (minutes <= 9) {
+    appendMinutes.innerHTML = "0" + minutes;
+  }
+
+  if (minutes > 9) {
+    appendMinutes.innerHTML = minutes;
+  }
 }
 
 
