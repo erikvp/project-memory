@@ -12,7 +12,8 @@ let twoActiveCards = false; // true when two cards have been selected
 let activeCards = []; // img [id 1st card, image 1st card, id 2nd card, image 2nd card]
 let matchedPair = false; // true when two selected cards are a match
 
-
+let restartGame = document.getElementById('reset-button');
+let playAgain = document.querySelector('button');
 
 /* * * * * * * * * * * Setup * * * * * * * * * */
 shuffledPairs = shufflePairs(pairs);
@@ -21,13 +22,11 @@ makeGrid(row, col, shuffledPairs);
 
 
 
-/* * * * * * * * * * * EVENT LISTENERS * * * * * * * * * */
-let selectedCard = document.querySelectorAll('img');
-let restartGame = document.getElementById('reset-button');
-let playAgain = document.querySelector('button');
 
+
+// RESTART GAME USING PLAY AGAIN BUTTON
 playAgain.addEventListener('click', function () {
-  console.log('RESTART GAME');
+  console.log('PLAY AGAIN CLICKED - RESTART GAME');
   shuffledPairs = shufflePairs(pairs);
   makeGrid(row, col, shuffledPairs);
   resetVariables();
@@ -35,9 +34,9 @@ playAgain.addEventListener('click', function () {
   resetGameBoard();
 });
 
-
+// RESTART GAME USING RESET BUTTON
 restartGame.addEventListener('click', function () {
-  console.log('RESTART GAME');
+  console.log('RESET CLICKED - RESTART GAME');
   shuffledPairs = shufflePairs(pairs);
   makeGrid(row, col, shuffledPairs);
   resetVariables();
@@ -45,13 +44,17 @@ restartGame.addEventListener('click', function () {
 
 });
 
+/* * * * * * * * * * * EVENT LISTENERS * * * * * * * * * */
+let selectedCard = document.querySelectorAll('img');
+
+
 for (const card of selectedCard) {
   card.addEventListener('click', function () {
     let cardID = this.id; //e.g. 'image7'
     let cardImg = this.getAttribute('src'); //e.g. 'images/2.png'
     let testCard = document.getElementById(cardID);
 
-
+    console.log('CLICKED');
     if (testCard.classList.contains('show-card')) {
       console.log('this card is already selected')
     } else {
@@ -239,8 +242,10 @@ function checkGameStatus() {
 
   function gameOver() {
     let hideBoard = document.querySelector('.game-board');
+    let hideStats = document.querySelector('.game-stats');
     let gameResults = document.querySelector('.game-results')
     hideBoard.style.display = 'none';
+    hideStats.style.display = 'none';
     gameResults.style.display = 'block';
   }
 } // checkGameStatus
@@ -272,8 +277,10 @@ function resetHeader() {
 
 function resetGameBoard() {
   let showBoard = document.querySelector('.game-board');
+  let showStats = document.querySelector('.game-stats');
   let hideResults = document.querySelector('.game-results')
   showBoard.style.display = 'block';
+  showStats.style.display = 'flex';
   hideResults.style.display = 'none';
 }
 
@@ -330,8 +337,8 @@ function makeGrid(_row, _col, _shuffledPairs) {
     table += '<tr class="cards-row">'; // add row opening with <tr> tag
     //Create grid columns
     for (let c = 0; c < _col; c++) {
-      let img = `<img id='image ${idNum}' src='images/${_shuffledPairs[idNum]}.png' alt='nautical flag'>`;
-      let tdImgString = `<td class='card' id='card ${idNum}'> ${img}</td>`;
+      let img = `<img id='image${idNum}' src='images/${_shuffledPairs[idNum]}.png' alt='nautical flag'>`;
+      let tdImgString = `<td class='card' id='card${idNum}'> ${img}</td>`;
 
       //add <td> tags equal to _col
       //each <td> has an id equal to the row/col.  e.g. id=A4

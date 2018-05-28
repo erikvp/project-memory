@@ -109,11 +109,6 @@ h1 {
   font-size: 2em;
 }
 
-.game-board {
-  /* USE THIS TO TEST GAME-RESULTS POP-UP */
-  /* display: none; */
-}
-
 .main {
   border: 2px solid maroon;
   width: 100%;
