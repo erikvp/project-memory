@@ -155,7 +155,7 @@ function startTimer() {
   let minString;
 
   seconds++;
-  console.log(`Seconds:${seconds}`);
+  // console.log(`Seconds:${seconds}`);
 
   if (seconds <= 9) {
     secString = '0' + seconds;
@@ -183,6 +183,7 @@ function startTimer() {
     minString = 'ENDED';
     secString = '';
   }
+  timeStamp = `${minString}:${secString}`;
   time.innerHTML = minString + ':' + secString;
 }
 
@@ -278,9 +279,13 @@ function checkGameStatus() {
     let hideBoard = document.querySelector('.game-board');
     let hideStats = document.querySelector('.game-stats');
     let gameResults = document.querySelector('.game-results')
+    let finalTime = document.getElementById('final-time');
+    let finalMoves = document.getElementById('final-moves');
     hideBoard.style.display = 'none';
     hideStats.style.display = 'none';
     gameResults.style.display = 'block';
+    finalTime.innerHTML = `TIME ${timeStamp}`;
+    finalMoves.innerHTML = `MOVES ${moveCounter}`;
   }
 } // checkGameStatus
 
