@@ -24,10 +24,24 @@ makeGrid(row, col, shuffledPairs);
 /* * * * * * * * * * * EVENT LISTENERS * * * * * * * * * */
 let selectedCard = document.querySelectorAll('img');
 let restartGame = document.getElementById('reset-button');
+let playAgain = document.querySelector('button');
+
+playAgain.addEventListener('click', function () {
+  console.log('RESTART GAME');
+  shuffledPairs = shufflePairs(pairs);
+  makeGrid(row, col, shuffledPairs);
+  resetVariables();
+  resetHeader();
+  resetGameBoard();
+});
 
 
 restartGame.addEventListener('click', function () {
   console.log('RESTART GAME');
+  shuffledPairs = shufflePairs(pairs);
+  makeGrid(row, col, shuffledPairs);
+  resetVariables();
+  resetHeader();
 
 });
 
@@ -206,8 +220,10 @@ function updateCardStatus(_twoActiveCards, _matchedPair, _activeCards) {
 function checkGameStatus() {
   if (correctCounter === 8) {
     console.log('GAME OVER');
-    resetVariables();
     gameOver();
+    resetVariables();
+    resetHeader();
+
 
 
   } else if (twoActiveCards) {
@@ -227,17 +243,38 @@ function checkGameStatus() {
     hideBoard.style.display = 'none';
     gameResults.style.display = 'block';
   }
+} // checkGameStatus
 
-  function resetVariables() {
-    timeStamp = 0;
-    moveCounter = 0;
-    correctCounter = 0;
-    twoActiveCards = false;
-    activeCards = [];
-    matchedPair = false;
+function resetVariables() {
+  timeStamp = 0;
+  moveCounter = 0;
+  correctCounter = 0;
+  twoActiveCards = false;
+  activeCards = [];
+  matchedPair = false;
+}
+
+function resetHeader() {
+  let stars = document.getElementsByClassName('fa-star');
+  let timer = document.getElementById('time');
+  let moves = document.getElementById('move-counter');
+
+  // Reset to 4 stars
+  for (let i = 0; i < 4; i++) {
+    if (stars[i].classList.contains('no-star')) {
+      stars[i].classList.remove('no-star');
+    }
   }
 
+  timer.textContent = '00:00';
+  moves.textContent = '0';
+}
 
+function resetGameBoard() {
+  let showBoard = document.querySelector('.game-board');
+  let hideResults = document.querySelector('.game-results')
+  showBoard.style.display = 'block';
+  hideResults.style.display = 'none';
 }
 
 

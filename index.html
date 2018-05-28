@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Project - Memory Game</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Bungee+Outline" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
 </head>
@@ -14,26 +15,26 @@
   <div class='container'>
     <!-- <h3>CONTAINER</h3> -->
     <header class='header'>
-      <h1>MEMORY GAME (HEADER)</h3>
+      <h1>MEMORY GAME</h1>
     </header>
     <section class='game-stats'>
       <!-- <h3>GAME STATS</h3> -->
       <ul class='stars-group'>
         <li class='star'>
-          <i class="fas fa-star"></i>
+          <i class='fas fa-star' id='star1'></i>
         </li>
         <li class='star'>
-          <i class="fas fa-star"></i>
+          <i class='fas fa-star' id='star2'></i>
         </li>
         <li class='star'>
-          <i class="fas fa-star"></i>
+          <i class='fas fa-star' id='star3'></i>
         </li>
         <li class='star'>
-          <i class="fas fa-star"></i>
+          <i class='fas fa-star' id='star4'></i>
         </li>
       </ul>
       <p class='duration'>DURATION:
-        <span id='time'>00:00</span>
+        <span id='time'>01:30</span>
       </p>
       <p class='moves'>MOVES:
         <span id='move-counter'>0</span>
@@ -57,7 +58,18 @@
       </div>
 
       <div class='game-results'>
-        <h2>Congratulations - You Won!</h2>
+        <span id='congrats'>Congratulations - You Won!</span>
+        <p id='final-stats'>
+          <span id='star-rating'>
+            <i class='fas fa-star'></i>
+            <i class='fas fa-star'></i>
+            <i class='fas fa-star'></i>
+            <i class='fas fa-star'></i>
+          </span>
+          <span id='final-time'>TIME 00:00</span>
+          <span id='final-moves'>MOVES 10</span>
+
+        </p>
         <button class='play-again'>PLAY AGAIN</button>
       </div>
 
@@ -65,7 +77,9 @@
 
     <footer class='footer'>
       <h3>FOOTER</h3>
-
+      <p>
+        <a href='https://erikvp.github.io' target='_blank'>design by: evp</a>
+      </p>
     </footer>
 
   </div>

@@ -50,7 +50,13 @@ li {
   border: 2px solid hotpink;
   text-align: center;
   width: 100%;
-  margin: 20px;
+  margin: 0;
+}
+
+h1 {
+  font-size: 5em;
+  font-family: 'Bungee Outline';
+  margin: 0;
 }
 
 /* * * * * * * GAME STATS * * * * * */
@@ -77,6 +83,10 @@ li {
   font-size: 2vw;
 }
 
+.no-star {
+  color: white;
+}
+
 .duration,
 .moves {
   align-self: center;
@@ -93,23 +103,15 @@ li {
   width: 25vw;
 }
 
-.fas:hover {
-  color: red;
-}
-
-.fa-spin {
-  color: green;
-}
-
-/* #time {
-  
-} */
-
 /* * * * * * * MAIN (Game Board) * * * * * */
 
-.game-results {
-  display: none;
-  text-align: center;
+#final-stats {
+  font-size: 2em;
+}
+
+.game-board {
+  /* USE THIS TO TEST GAME-RESULTS POP-UP */
+  /* display: none; */
 }
 
 .main {
@@ -130,21 +132,21 @@ li {
   border: 5px solid red;
 }
 
+td {
+  width: 20vw;
+  border: 5px solid black;
+  background: gray;
+}
+
 img {
   width: 20vw;
   border: 5px solid white;
   opacity: 0.3;
 }
 
-li.card {
+/* li.card {
   background: gray;
-}
-
-td {
-  width: 20vw;
-  border: 5px solid black;
-  background: gray;
-}
+} */
 
 .show-card {
   animation-name: show-card;
@@ -159,6 +161,49 @@ td {
   to {
     opacity: 1;
   }
+}
+
+/* * * * * * GAME RESULTS * * * * * * */
+
+/* DIV FOR GAME RESULT POP-UP */
+
+.game-results {
+  display: none;
+  background: rgb(6, 133, 236);
+  border-radius: 20px;
+  margin: auto;
+  text-align: center;
+  color: ivory;
+  width: 70vw;
+  height: 30vw;
+}
+
+/* PLAY AGAIN BUTTON */
+
+.play-again {
+  height: 8vw;
+  border-radius: 10px;
+  font-size: 3em;
+  border: 2px solid ivory;
+  background: rgb(80, 75, 75);
+  color: ivory;
+  margin: auto;
+}
+
+/* <p> containing stars time moves */
+
+#final-stats {
+  display: flex;
+  justify-content: space-around;
+  font-size: 3em;
+}
+
+/* Congrats - You Won */
+
+#congrats {
+  display: block;
+  font-size: 4em;
+  padding-top: 20px;
 }
 
 /* * * * * * * FOOTER * * * * * */
