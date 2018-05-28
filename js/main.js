@@ -375,15 +375,6 @@ function resetGameBoard() {
 
 /* * * * * * * * * * * * Setup Functions * * *  * * * * * * * * * */
 
-// function shuffleImages() {
-//   imageArr[num].src = 'images/' + shuffledPairs[num] + '.png';
-//   num++;
-
-//   if (num === imageArr.length) {
-//     clearInterval(myVar);
-//   }
-// }
-
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shufflePairs(pairs) {
   let currentIndex = pairs.length,

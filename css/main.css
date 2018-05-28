@@ -17,24 +17,6 @@ body {
   color: #424242;
 }
 
-ul {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  list-style: none;
-  padding: 0;
-}
-
-li {
-  /* border: 5px solid white; */
-  width: 20vw;
-  height: 20vw;
-  /* height: 25%; */
-  font-size: 2em;
-  margin: 1vw;
-}
-
 .container {
   display: flex;
   justify-content: center;
@@ -88,7 +70,7 @@ h1 {
 }
 
 .stars-group,
-.duration,
+.timer,
 .moves {
   align-self: center;
   text-align: center;
@@ -106,6 +88,23 @@ h1 {
 
 /* * * * * * * MAIN (Game Board) * * * * * */
 
+table {
+  margin: auto;
+}
+
+td {
+  border-radius: 20px;
+  width: 22%;
+  background: rgb(223, 214, 214);
+}
+
+img {
+  border-radius: 20px;
+  max-width: 95%;
+  border: 5px solid white;
+  opacity: 0;
+}
+
 #final-stats {
   font-size: 2em;
 }
@@ -113,11 +112,10 @@ h1 {
 .main {
   border: 2px solid maroon;
   width: 100%;
-  /* margin: 2vw; */
 }
 
 .one-selected {
-  border: 5px solid rgb(255, 0, 212);
+  border: 5px solid rgb(39, 35, 38);
 }
 
 .match-selected {
@@ -127,22 +125,6 @@ h1 {
 .no-match-selected {
   border: 5px solid red;
 }
-
-td {
-  width: 20vw;
-  border: 5px solid black;
-  background: gray;
-}
-
-img {
-  width: 20vw;
-  border: 5px solid white;
-  opacity: 0.3;
-}
-
-/* li.card {
-  background: gray;
-} */
 
 .show-card {
   animation-name: show-card;
