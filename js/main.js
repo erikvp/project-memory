@@ -98,7 +98,7 @@ for (let card of selectedCard) {
         correctCounter = correctCounter + 1;
       }
 
-      updateStars(moveCounter, correctCounter, minutes, seconds);
+      updateStars(twoActiveCards, moveCounter, correctCounter);
 
       //* * * UPDATE CARD STATUS * * * *
       //* 1 active card: highlight blue
@@ -256,26 +256,43 @@ function updateCardStatus(_twoActiveCards, _matchedPair, _activeCards) {
   }
 } // updateCardStatus()
 
-function updateStars(moveCounter, correctCounter, minutes, seconds) {
+function updateStars(twoActiveCards, moveCounter, correctCounter, ) {
   let wrong = moveCounter - correctCounter;
+  let star4 = document.getElementById('star4');
+  let star3 = document.getElementById('star3');
+  let star2 = document.getElementById('star2');
+  let star1 = document.getElementById('star1');
 
-  if (wrong <= 1 && minutes === 0 && seconds <= 30) {
-    console.log('STARS: * * * * ');
-  } else if (wrong <= 2 && minutes === 0 && seconds <= 45) {
-    console.log('STARS: * * * ');
-  } else if (wrong <= 3 && minutes < 1) {
-    console.log('STARS: * * ');
-  } else if (wrong <= 4) {
-    console.log('STARS: * ');
+  if (twoActiveCards) {
+
+    if (wrong <= 1) {
+      console.log('STARS: * * * * ');
+    } else if (wrong <= 2) {
+      console.log('STARS: * * * ');
+      star4.classList.add('no-star');
+      stars = 3;
+    } else if (wrong <= 3) {
+      console.log('STARS: * * ');
+      star3.classList.add('no-star');
+      stars = 2;
+    } else if (wrong <= 4) {
+      console.log('STARS: * ');
+      star2.classList.add('no-star');
+      stars = 1;
+    } else {
+      console.log('STARS: NONE');
+      star1.classList.add('no-star');
+      stars = 0;
+    }
   } else {
-    console.log('STARS: NONE');
+    return;
   }
 }
 
 function checkGameStatus() {
   if (correctCounter === 8) {
     console.log('GAME OVER');
-    gameOver();
+    gameOver(stars);
     resetVariables();
     resetHeader();
 
@@ -291,15 +308,25 @@ function checkGameStatus() {
   }
   return;
 
-  function gameOver() {
+  function gameOver(stars) {
     let hideBoard = document.querySelector('.game-board');
     let hideStats = document.querySelector('.game-stats');
     let gameResults = document.querySelector('.game-results')
     let finalTime = document.getElementById('final-time');
     let finalMoves = document.getElementById('final-moves');
+    let starRating = document.getElementById('star-rating');
+    let starHTML = '';
+    let starIcon = "<i class='fas fa-star'></i>"
+
+
+    for (let i = 0; i < stars; i++) {
+      starHTML += starIcon;
+    }
+
     hideBoard.style.display = 'none';
     hideStats.style.display = 'none';
     gameResults.style.display = 'block';
+    starRating.innerHTML = starHTML;
     finalTime.innerHTML = `TIME ${timeStamp}`;
     finalMoves.innerHTML = `MOVES ${moveCounter}`;
   }
