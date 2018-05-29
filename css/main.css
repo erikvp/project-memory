@@ -86,8 +86,7 @@ table {
 td {
   border-radius: 20px;
   width: 22%;
-  /* background: rgb(9, 211, 143); */
-  background-image: url("../images/nautical.jpg");
+  background: rgb(9, 211, 143);
 }
 
 img {

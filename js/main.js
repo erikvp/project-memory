@@ -265,17 +265,17 @@ function updateStars(twoActiveCards, moveCounter, correctCounter, ) {
 
   if (twoActiveCards) {
 
-    if (wrong <= 1) {
+    if (wrong <= 2) {
       console.log('STARS: * * * * ');
-    } else if (wrong <= 2) {
+    } else if (wrong <= 3) {
       console.log('STARS: * * * ');
       star4.classList.add('no-star');
       stars = 3;
-    } else if (wrong <= 3) {
+    } else if (wrong <= 4) {
       console.log('STARS: * * ');
       star3.classList.add('no-star');
       stars = 2;
-    } else if (wrong <= 4) {
+    } else if (wrong <= 5) {
       console.log('STARS: * ');
       star2.classList.add('no-star');
       stars = 1;
