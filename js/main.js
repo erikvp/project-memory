@@ -60,15 +60,12 @@ for (let card of selectedCard) {
     // timeStamp = gameTimer();
     // console.log(`timeStamp: ${timeStamp}`);
     if (!timerRunning) {
-      console.log('startTimer');
       // clearInterval(Interval);
       Interval = setInterval(startTimer, 1000); // update every 1000ms
       timerRunning = true;
     }
     // TEST IF CLICKED CARD IS ALREADY SHOWING - DO NOTHING
-    if (testCard.classList.contains('show-card')) {
-      console.log('this card is already selected')
-    }
+    if (testCard.classList.contains('show-card')) {}
     // CHECK CLICKED CARD
     else {
       activeCards.push(cardID, cardImg);
@@ -104,6 +101,7 @@ for (let card of selectedCard) {
       //* 2 active cards AND match: highlight green, keep cards exposed
       //* 2 active cards AND no match: highlight red, hide cards
       updateCardStatus(twoActiveCards, matchedPair, activeCards);
+      //USE THIS OUTPUT FOR TRACKING STATUS OF VARS
       if (twoActiveCards) {
         console.log('* * * * * MOVE STATS * * * * *');
         // console.log(`timeStamp: ${timeStamp}`);
@@ -124,9 +122,6 @@ for (let card of selectedCard) {
   }); // card clicked event listener
 
 } // for-of card
-
-
-
 
 
 
@@ -225,7 +220,6 @@ function updateCardStatus(_twoActiveCards, _matchedPair, _activeCards) {
 
   // No Match - Hide Cards
   function hideCards() {
-    console.log('hideCards');
     firstCard.classList.remove('show-card', 'no-match-selected', 'one-selected');
     secondCard.classList.remove('show-card', 'no-match-selected');
   }
@@ -278,7 +272,6 @@ function checkGameStatus() {
     twoActiveCards = false;
     activeCards = [];
     matchedPair = false;
-    console.table(activeCards);
   } else {}
   return;
 
