@@ -242,21 +242,18 @@ function updateStars(twoActiveCards, moveCounter, correctCounter, ) {
 
   if (twoActiveCards) {
 
-    if (wrong <= 2) {} else if (wrong <= 3) {
+    if (wrong <= 2) {
+      stars = 4; // already 4 by default
+    } else if (wrong <= 4) {
       star4.classList.add('no-star');
       stars = 3;
-    } else if (wrong <= 4) {
+    } else if (wrong <= 6) {
       star3.classList.add('no-star');
       stars = 2;
-    } else if (wrong <= 5) {
+    } else {
       star2.classList.add('no-star');
       stars = 1;
-    } else {
-      star1.classList.add('no-star');
-      stars = 0;
     }
-  } else {
-    return;
   }
 }
 
